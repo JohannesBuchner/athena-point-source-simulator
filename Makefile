@@ -5,7 +5,10 @@ XMLFILE := ${SIXTE}/share/sixte/instruments/athena/1190mm_wfi_wo_filter/depfet_b
 
 all: obs.pi
 
-obs.simput: CTsphere.xcm constlightcurve.dat
+sphere0708.fits:
+	wget http://www.mpe.mpg.de/~mbright/data/sphere0708.fits 
+
+obs.simput: CTsphere.xcm constlightcurve.dat sphere0708.fits
 	simputfile RA=40.2  Dec=12.8            XSPECFile="CTsphere.xcm"            LCFile=constlightcurve.dat            MJDREF=50800.0            Emin=2            Emax=10.0            srcFlux=1e-11            Simput="obs.simput"  clobber=yes
 
 obs_events.fits: obs.simput

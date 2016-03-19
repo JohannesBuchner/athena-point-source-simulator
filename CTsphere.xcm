@@ -1,6 +1,6 @@
 abund wilm
 xsect vern
-model  atable{/mnt/data/daten/PhD/research/agn/luminosity_function/data/spec/mbrightman/sphere0708.fits}
+model  atable{sphere0708.fits}
             100          1       0.01       0.01      10000      10000
               2       0.01          1        1.2        2.8          3
               1       0.01        0.1        0.1         10         10
