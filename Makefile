@@ -9,7 +9,7 @@ sphere0708.fits:
 	wget http://www.mpe.mpg.de/~mbright/data/sphere0708.fits 
 
 obs.simput: CTsphere.xcm constlightcurve.dat sphere0708.fits
-	simputfile RA=40.2  Dec=12.8            XSPECFile="CTsphere.xcm"            LCFile=constlightcurve.dat            MJDREF=50800.0            Emin=2            Emax=10.0            srcFlux=1e-14            Simput="obs.simput"  clobber=yes
+	simputfile RA=40.2  Dec=12.8            XSPECFile="CTsphere.xcm"            LCFile=constlightcurve.dat            MJDREF=50800.0            Emin=2            Emax=10.0            srcFlux=1e-12            Simput="obs.simput"  clobber=yes
 
 obs_repeated.simput: obs.simput
 	python simputrepeat.py obs.simput obs_repeated.simput
@@ -30,16 +30,17 @@ obs_events.fits: obs+extbkg.simput
 		Mission="ATHENA"         Instrument="WFI"         Mode="1190mm_wfi_wo_filter"         XMLFile=${XMLFILE} \
 		Simput="obs+extbkg.simput"         Exposure=10000.         RA=40.2 Dec=12.8         MJDREF=50814.0 clobber=yes
 
-obs.pi obs_bkg.pi: obs_events.fits
+detected.txt: obs_events.fits
 	python createspectrum.py obs_events.fits ${SIXTE}/share/sixte/instruments/athena/1190mm_wfi_wo_filter/depfet_b_1l_ff_large.xml
 
-obsplot.ps: obs.pi
-	xspec < test.xspec
+#obsplot.ps: obs.pi
+#	xspec < test.xspec
 
-obsplot.pdf: obsplot.ps
-	ps2pdf obsplot.ps
+#obsplot.pdf: obsplot.ps
+#	ps2pdf obsplot.ps
 
 clean:
 	rm -f obs.simput obs_events.fits 
 	rm -f obs.pi obs_bkg.pi 
 	rm -f obsplot.ps obsplot.pdf
+
