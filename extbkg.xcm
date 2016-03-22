@@ -1,0 +1,16 @@
+# Arne Rau's Athena WFI background model
+abund wilm
+xsect vern
+model apec+phabs*(apec+pow)
+9.9E-02
+1
+0
+1.7E-6
+0.018
+0.225
+1
+0
+7.3E-7
+1.45
+2E-7
+
